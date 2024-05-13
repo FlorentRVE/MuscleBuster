@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { ProduitContext } from "../App";
 
 function Grid() {
 
   const [data, setData] = useState([]);
+  const {Produit, setProduit} = useContext(ProduitContext);
 
   useEffect(() => {
     const getData = async () => {      
@@ -14,7 +16,10 @@ function Grid() {
     
   }, []);
 
-  console.log(data);
+  const addToCart = (item: object) => {
+    setProduit([...Produit, item]);
+    console.log(Produit);
+  }
   
   return (
     <div>
@@ -31,7 +36,7 @@ function Grid() {
 
       <div className="flex gap-4 m-10">
         {data.map((item: any) => (
-          <div className="flex flex-col items-center justify-center bg-white rounded-xl shadow-md w-1/4 py-10">
+          <div key={item.id} className="flex flex-col items-center justify-center bg-white rounded-xl shadow-md w-1/4 py-10">
 
             <img src={item.img} className=" h-56 w-auto"/>
 
@@ -41,7 +46,7 @@ function Grid() {
                 <p className="font-bold">{item.prix}$</p>
               </div>
 
-              <img src="images/cart.png" alt="cart" className="h-10"/>
+              <img src="images/cart.png" alt="cart" className="h-10 hover:cursor-pointer" onClick={() => addToCart(item)}/>
 
             </div>
           </div>
