@@ -1,0 +1,35 @@
+{
+  "produit": [
+    {
+      "id": "1",
+      "label": "Carnitix MTX",
+      "description": "Carnitix MTX est un produit etc etc",
+      "img": "images/produit/CARNITINE.png",
+      "prix": 38
+    },
+
+    {
+      "id": "2",
+      "label": "Citrulline",
+      "description": "Citrulline est un produit etc etc",
+      "img": "images/produit/CITRULLINE.png",
+      "prix": 24
+    },
+
+    {
+      "id": "3",
+      "label": "Infinite",
+      "description": "Infinite est un produit etc etc",
+      "img": "images/produit/INFINITE.png",
+      "prix": 53
+    },
+
+    {
+      "id": "4",
+      "label": "Juggernaut",
+      "description": "Juggernaut est un produit etc etc",
+      "img": "images/produit/JUGGERNAUT.png",
+      "prix": 37
+    }
+  ]
+}
