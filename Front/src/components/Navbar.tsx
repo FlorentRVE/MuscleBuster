@@ -1,4 +1,3 @@
-import { CiSearch } from "react-icons/ci";
 import { MdOutlineShoppingBag } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
@@ -10,28 +9,27 @@ function Navbar() {
       <img
         src="images/Logo.png"
         alt="logo"
-        className="ml-10 my-5 w-56"
+        className="ml-10 my-5 w-56 hover:cursor-pointer"
         onClick={() => navigate("/")}
       />
 
       <div className="flex gap-4 px-4 items-center text-xl">
         <p
-          className="text-blue-950 hover:text-orange-400 hover:border-b-orange-400 hover:border-b-2"
+          className="text-blue-950 hover:text-orange-400 hover:border-b-orange-400 hover:border-b-2 hover:cursor-pointer"
           onClick={() => navigate("/")}
         >
           Accueil
         </p>
 
         <p
-          className="text-blue-950 hover:text-orange-400 hover:border-b-orange-400 hover:border-b-2"
+          className="text-blue-950 hover:text-orange-400 hover:border-b-orange-400 hover:border-b-2 hover:cursor-pointer"
           onClick={() => navigate("/catalogue")}
         >
           Catalogue
         </p>
-        <CiSearch className="text-blue-950 hover:text-orange-400" />
 
         <MdOutlineShoppingBag
-          className="text-blue-950 hover:text-orange-400"
+          className="text-blue-950 hover:text-orange-400 hover:cursor-pointer"
           onClick={() => navigate("/panier")}
         />
       </div>

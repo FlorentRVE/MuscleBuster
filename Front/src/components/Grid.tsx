@@ -4,7 +4,7 @@ import { ProduitContext } from "../App";
 function Grid() {
 
   const [data, setData] = useState([]);
-  const {Produit, setProduit} = useContext(ProduitContext);
+  const {Produit} = useContext(ProduitContext);
 
   useEffect(() => {
     const getData = async () => {      
@@ -16,8 +16,13 @@ function Grid() {
     
   }, []);
 
-  const addToCart = (item: object) => {
-    setProduit([...Produit, item]);
+  const addToCart = (item: any) => {
+    
+    if(Produit.includes(item)) {
+      item.quantite += 1;
+    } else {
+      Produit.push(item);
+    }
     console.log(Produit);
   }
   

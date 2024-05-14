@@ -5,7 +5,8 @@
       "label": "Carnitix MTX",
       "description": "Carnitix MTX est un produit etc etc",
       "img": "images/produit/CARNITINE.png",
-      "prix": 38
+      "prix": 38,
+      "quantite": 1
     },
 
     {
@@ -13,7 +14,8 @@
       "label": "Citrulline",
       "description": "Citrulline est un produit etc etc",
       "img": "images/produit/CITRULLINE.png",
-      "prix": 24
+      "prix": 24,
+      "quantite": 1
     },
 
     {
@@ -21,7 +23,8 @@
       "label": "Infinite",
       "description": "Infinite est un produit etc etc",
       "img": "images/produit/INFINITE.png",
-      "prix": 53
+      "prix": 53,
+      "quantite": 1
     },
 
     {
@@ -29,7 +32,8 @@
       "label": "Juggernaut",
       "description": "Juggernaut est un produit etc etc",
       "img": "images/produit/JUGGERNAUT.png",
-      "prix": 37
+      "prix": 37,
+      "quantite": 1
     }
   ]
 }

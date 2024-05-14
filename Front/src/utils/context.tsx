@@ -11,3 +11,13 @@ export const ProduitContext = () => {
     setProduit: () => null,
   });
 };
+
+export const TotalContext = () => {
+  return createContext<{
+    Total: Number;
+    setTotal: (value: Number) => void;
+  }>({
+    Total: 0,
+    setTotal: () => null,
+  });
+};
