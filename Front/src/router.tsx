@@ -4,6 +4,7 @@ import Catalog from "./pages/Catalog";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Panier from "./pages/Panier";
+import Paiement from "./pages/Paiement";
 
 const router = createBrowserRouter([
 
@@ -12,6 +13,7 @@ const router = createBrowserRouter([
   { path: "/about", element: < About />},
   { path: "/contact", element: < Contact />},
   { path: "/panier", element: < Panier />},
+  { path: "/paiement", element: < Paiement />},
   
 ]);
 

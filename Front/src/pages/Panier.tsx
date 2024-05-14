@@ -3,27 +3,34 @@ import { ProduitContext, TotalContext } from "../App";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Title from "../components/Title";
-// import Produits from "../models/produit";
 import { MdDeleteForever } from "react-icons/md";
-
+import { useNavigate } from "react-router-dom";
+import Produit from "../models/produit";
 
 function Panier() {
+  const navigate = useNavigate();
 
-  const {Produit, setProduit} = useContext(ProduitContext);
-  const {Total, setTotal} = useContext(TotalContext);
+  const { Produit, setProduit } = useContext(ProduitContext);
+  const { Total, setTotal } = useContext(TotalContext);
 
   useEffect(() => {
     setTotal(
       Produit.reduce(
-        (Total: any, item: any) => Total + item.prix * item.quantite,
+        (Total: number, item: Produit) => Total + item.prix * item.quantite,
         0
       )
     );
   }, [Produit]);
 
-  const deleteProduit = (item: any) => {
-    setProduit(Produit.filter((produit: any) => produit !== item));
-  }
+  const deleteProduit = (item: Produit) => {
+    setProduit(Produit.filter((produit: Produit) => produit !== item));
+  };
+
+  const quantiteProduit = (item: Produit, e: any) => {
+    setProduit(
+      Produit.filter(() => (item.quantite = parseInt(e.target.value)))
+    );
+  };
 
   return (
     <div className="flex flex-col">
@@ -40,7 +47,7 @@ function Panier() {
         </div>
 
         <div className="flex flex-col items-center w-[80%] bg-slate-100 p-10">
-          {Produit.map((produit: any) => {
+          {Produit.map((produit: Produit) => {
             return (
               <div
                 key={produit.id}
@@ -48,7 +55,13 @@ function Panier() {
               >
                 <img src={produit.img} className=" h-20 w-auto" />
                 <p>{produit.label}</p>
-                <p>{produit.quantite}</p>
+                <input
+                  type="number"
+                  defaultValue={produit.quantite}
+                  min={1}
+                  className="w-10 border-2 border-slate-400 rounded-lg text-center"
+                  onChange={() => quantiteProduit(produit, event)}
+                />
                 <p>{produit.prix}$</p>
                 <MdDeleteForever
                   className="text-2xl text-red-600 hover:cursor-pointer hover:scale-110"
@@ -62,7 +75,7 @@ function Panier() {
         <div className="flex justify-between items-center w-[80%] bg-orange-400 p-5 font-bold">
           <div></div>
           <p>
-            Total: <span>{Total.toString()}</span>
+            Total: <span>{Total.toString()}$</span>
           </p>
         </div>
 
@@ -74,7 +87,10 @@ function Panier() {
               Annuler le panier
             </button>
 
-            <button className="bg-orange-400 text-white font-bold rounded-lg px-2 py-1">
+            <button
+              className="bg-orange-400 text-white font-bold rounded-lg px-2 py-1"
+              onClick={() => navigate("/paiement")}
+            >
               PAYER
             </button>
           </div>
