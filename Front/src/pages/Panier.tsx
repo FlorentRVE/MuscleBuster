@@ -38,15 +38,16 @@ function Panier() {
 
       <Title title="Panier" />
 
-      <div className="flex flex-col justify-center items-center mt-20">
-        <div className="flex justify-evenly items-center w-[80%] bg-orange-400 p-2 gap-14 font-bold">
+      <div className="flex flex-col justify-center mt-20 w-[80%] mx-auto">
+
+        <div className="flex items-center justify-evenly bg-orange-400 p-2 font-bold">
           <p></p>
           <p>Produit</p>
           <p>Quantite</p>
           <p>Prix</p>
         </div>
 
-        <div className="flex flex-col items-center w-[80%] bg-slate-100 p-10">
+        <div className="flex flex-col bg-slate-100 p-10 w-full">
           {Produit.map((produit: Produit) => {
             return (
               <div
@@ -72,14 +73,14 @@ function Panier() {
           })}
         </div>
 
-        <div className="flex justify-between items-center w-[80%] bg-orange-400 p-5 font-bold">
+        <div className="flex justify-between items-center bg-orange-400 p-5 font-bold">
           <div></div>
-          <p>
+          <p className="text-2xl">
             Total: <span>{Total.toString()}$</span>
           </p>
         </div>
 
-        <div className="flex justify-between items-center w-[80%]">
+        <div className="flex justify-between items-center">
           <div></div>
 
           <div className="flex gap-4 py-4 my-10">

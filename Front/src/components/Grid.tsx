@@ -4,6 +4,8 @@ import Produit from "../models/produit";
 
 function Grid() {
   const [data, setData] = useState([]);
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
   const { Produit } = useContext(ProduitContext);
 
   useEffect(() => {
@@ -22,8 +24,20 @@ function Grid() {
 
     if (existingItem) {
       existingItem.quantite += 1;
+      setAlertMessage(`${existingItem.label} a été ajouter à votre panier.`);
+      setShowAlert(true);
+
+      setTimeout(() => {
+        setShowAlert(false);
+      }, 2000);
     } else {
       Produit.push(item);
+      setAlertMessage(`${item.label} a été ajouter à votre panier.`);
+      setShowAlert(true);
+
+      setTimeout(() => {
+        setShowAlert(false);
+      }, 2000);
     }
   };
 
@@ -38,6 +52,14 @@ function Grid() {
             <option>Catégorie</option>
           </select>
         </form>
+      </div>
+
+      <div>
+        {showAlert && (
+          <p className="text-center bg-green-500 w-1/3 mx-auto p-2 rounded-lg font-bold text-slate-50">
+            {alertMessage}
+          </p>
+        )}
       </div>
 
       <div className="flex gap-4 m-10">
@@ -57,7 +79,7 @@ function Grid() {
               <img
                 src="images/cart.png"
                 alt="cart"
-                className="h-10 hover:cursor-pointer"
+                className="h-10 hover:cursor-pointer hover:scale-125 active:scale-150"
                 onClick={() => addToCart(item)}
               />
             </div>
