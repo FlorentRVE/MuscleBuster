@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import { ProduitContext } from "../App";
 import Produit from "../models/produit";
+import * as api from "../utils/api";
 
 function Grid() {
   const [data, setData] = useState([]);
@@ -9,12 +10,9 @@ function Grid() {
   const { Produit } = useContext(ProduitContext);
 
   useEffect(() => {
-    const getData = async () => {
-      await fetch("http://localhost:3000/produit")
-        .then((res) => res.json())
-        .then((data) => setData(data));
-    };
-    getData();
+    api.getProduits().then((data) => {
+      setData(data);
+    })
   }, []);
 
   const addToCart = (item: Produit) => {
