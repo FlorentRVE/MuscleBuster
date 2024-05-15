@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Title from "../components/Title";
 import emailjs from "@emailjs/browser";
-import * as api from "../utils/api";
+// import * as api from "../utils/api";
 
 function Paiement() {
   const { Total } = useContext(TotalContext);
