@@ -60,13 +60,13 @@ function Grid() {
         )}
       </div>
 
-      <div className="flex gap-4 m-10">
+      <div className="flex gap-4 m-10 flex-wrap justify-center">
         {data.map((item: Produit) => (
           <div
             key={item.id}
             className="flex flex-col items-center justify-center bg-white rounded-xl shadow-md w-1/4 py-10"
           >
-            <img src={item.img} className=" h-56 w-auto" />
+            <img src={item.imageURL} className=" h-56 w-auto" />
 
             <div className="flex gap-10 mt-5">
               <div>

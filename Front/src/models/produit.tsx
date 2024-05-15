@@ -2,7 +2,7 @@ export default interface Produit {
   id: number;
   label: string;
   description: string;
-  img: string;
+  imageURL: string;
   prix: number;
   quantite: number;
 }

@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Title from "../components/Title";
 import emailjs from "@emailjs/browser";
-// import * as api from "../utils/api";
+import * as api from "../utils/api";
 
 function Paiement() {
   const { Total } = useContext(TotalContext);
@@ -44,13 +44,15 @@ function Paiement() {
       mail: form.current?.mail.value,
       nomCarte: form.current?.nomCarte.value,
       numeroCarte: form.current?.numeroCarte.value,
-      dateExpiration: form.current?.dateExpiration.value,
+      moisExpiration: form.current?.moisExpiration.value,
+      anneeExpiration: form.current?.anneeExpiration.value,
       cvv: form.current?.cvv.value,
       commandes: Produit,
+      total: Total,
     };
     
     console.log(data);
-    // api.postPaiement(data);
+    api.postPaiement(data);
     sendEmail;
     navigate("/success");
   };
@@ -134,22 +136,24 @@ function Paiement() {
           </div>
 
           <div className="flex justify-between gap-2">
-            <label htmlFor="dateExpiration">Date d'expiration</label>
+            <label htmlFor="moisExpiration">Date d'expiration</label>
             <div className="flex flex-1 gap-2">
               <select
-                name="dateExpiration"
-                id="dateExpiration"
+                name="moisExpiration"
+                id="moisExpiration"
                 className="flex-1 rounded-md border-2 border-gray-200"
               >
                 <option value="01">01</option>
+                <option value="02">02</option>
               </select>
 
               <select
-                name="numeroCarte"
-                id="numeroCarte"
+                name="anneeExpiration"
+                id="anneeExpiration"
                 className="flex-1 rounded-md border-2 border-gray-200"
               >
                 <option value="01">01</option>
+                <option value="02">02</option>
               </select>
             </div>
           </div>

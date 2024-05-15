@@ -54,7 +54,7 @@ function Panier() {
                 key={produit.id}
                 className="flex justify-evenly items-center gap-10 py-5 border-b-slate-300 border-b-2"
               >
-                <img src={produit.img} className=" h-20 w-auto" />
+                <img src={produit.imageURL} className=" h-20 w-auto" />
                 <p>{produit.label}</p>
                 <input
                   type="number"

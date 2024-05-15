@@ -11,35 +11,77 @@ class Product
     private string $id;
 
     #[MongoDB\Field(type: 'string')]
-    private string $name;
+    private string $label;
+
+    #[MongoDB\Field(type: 'string')]
+    private string $description;
+
+    #[MongoDB\Field(type: 'string')]
+    private string $imageURL;
 
     #[MongoDB\Field(type: 'float')]
-    private float $price;
+    private float $prix;
+
+    #[MongoDB\Field(type: 'int')]
+    private float $quantite;
 
     public function getId()
     {
         return $this->id;
     }
 
-    public function getName(): string
+    public function getLabel(): string
     {
-        return $this->name;
+        return $this->label;
     }
 
-    public function setName(string $name)
+    public function setLabel(string $label)
     {
-        $this->name = $name;
+        $this->label = $label;
 
         return $this;
     }
-    public function getprice(): float
+    public function getDescription(): string
     {
-        return $this->price;
+        return $this->description;
     }
 
-    public function setprice(float $price)
+    public function setDescription(string $description)
     {
-        $this->price = $price;
+        $this->description = $description;
+
+        return $this;
+    }
+    public function getImageURL(): string
+    {
+        return $this->imageURL;
+    }
+
+    public function setImageURL(string $imageURL)
+    {
+        $this->imageURL = $imageURL;
+
+        return $this;
+    }
+    public function getprix(): float
+    {
+        return $this->prix;
+    }
+
+    public function setprix(float $prix)
+    {
+        $this->prix = $prix;
+
+        return $this;
+    }
+    public function getQuantite(): int
+    {
+        return $this->quantite;
+    }
+
+    public function setQuantite(int $quantite)
+    {
+        $this->quantite = $quantite;
 
         return $this;
     }

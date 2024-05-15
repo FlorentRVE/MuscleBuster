@@ -4,19 +4,24 @@ namespace App\Controller;
 
 use App\Document\Product;
 use Doctrine\ODM\MongoDB\DocumentManager;
+use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/product')]
+#[Route('/produit')]
 class ProductController extends AbstractController
 {
     #[Route('/new')]
     public function createNewProduct(DocumentManager $dm)
     {
         $product = new Product();
-        $product->setName('A Foo Bar');
-        $product->setPrice('19.99');
+        $product->setLabel('Creatine');
+        $product->setDescription('Creatine MTX est un produit etc etc');
+        $product->setImageURL('images/produit/CARNITINE.png');
+        $product->setPrix(49.99);
+        $product->setQuantite(1);
 
         $dm->persist($product);
         $dm->flush();
@@ -25,14 +30,12 @@ class ProductController extends AbstractController
     }
 
     #[Route('/all')]
-    public function getAllProduct(DocumentManager $dm)
+    public function getAllProduct(DocumentManager $dm, SerializerInterface $serializer): Response
     {
         $product = $dm->getRepository(Product::class)->findAll();
 
-        $json = json_encode($product);
+        $jsonContent = $serializer->serialize($product, 'json');
 
-        // dd($product[0]);
-
-        return new Response($json);
+        return new Response($jsonContent);
     }
 }
