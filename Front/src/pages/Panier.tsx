@@ -5,8 +5,7 @@ import Navbar from "../components/Navbar";
 import Title from "../components/Title";
 import { MdDeleteForever } from "react-icons/md";
 import Produit from "../models/produit";
-// import * as api from "../utils/api";
-import { Link } from "react-router-dom";
+import * as api from "../utils/api";
 
 function Panier() {
 
@@ -32,12 +31,13 @@ function Panier() {
     );
   };
 
-  // const sendPaiement = () => {
-  //   let data = {
-  //     total: Total,
-  //   };
-  //   api.postPaiement(data);
-  // };
+  const sendPaiement = async () => {
+    let data = {
+      produit: Produit,
+    };
+    const url = await api.postPaiement(data);
+    window.location.href = url;
+  };
 
   return (
     <div className="flex flex-col">
@@ -90,14 +90,12 @@ function Panier() {
           <div></div>
 
           <div className="flex gap-4 py-4 my-10">
-            <Link to="https://127.0.0.1:8000/create-checkout-session">
               <button
                 className="bg-orange-400 text-white font-bold rounded-lg px-2 py-1"
-                // onClick={() => sendPaiement()}
+                onClick={() => sendPaiement()}
               >
                 PAYER
               </button>
-            </Link>
           </div>
         </div>
       </div>

@@ -56,7 +56,6 @@ function Success() {
           <button
             type="submit"
             className="bg-orange-400 text-white font-bold p-2 rounded-2xl w-[30%]"
-            // onClick={() => navigate("/catalogue")}
           >
             Retourner au catalogue
           </button>

@@ -1,4 +1,4 @@
-let API_URL = "https://127.0.0.1:8000";
+let API_URL = "https://localhost:8000";
 
 export const getProduits = async () => {
   const response = await fetch(API_URL + "/produit/all").then((resp) =>
@@ -8,13 +8,18 @@ export const getProduits = async () => {
 };
 
 export const postPaiement = async (data: any) => {
-  const response = await fetch(API_URL + "/create-checkout-session", {
-    method: "POST",
-    headers: {
-      "Accept": "*/*",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  }).then((resp) => resp.json());
-  return response;
+  try {
+
+    const response = await fetch(API_URL + "/create-checkout-session", {
+      method: "POST",
+      headers: {
+        "Accept": "*/*",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }).then((resp) => resp.json());
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
 };
