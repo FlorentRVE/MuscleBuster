@@ -19,7 +19,6 @@ class StripeController extends AbstractController
     {
         $data = json_decode($request->getContent(), true);
         $produit = $data['produit'];
-        // dd($produit[0]['label']);
 
         $items = [];
         foreach ($produit as $item) {
@@ -27,7 +26,7 @@ class StripeController extends AbstractController
                 'price_data' => [
                     'currency' => 'usd',
                     'product_data' => [
-                        'images' => ['http://localhost:5173/' . $item['imageURL']],
+                        'images' => ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsCIfL2Pr2V_sxCGPymMahbkfJMnBZBonQo0jqZFVong&s'],
                         'name' => $item['label'],
                     ],
                     'unit_amount' => $item['prix'] * 100,

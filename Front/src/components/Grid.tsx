@@ -12,7 +12,7 @@ function Grid() {
   useEffect(() => {
     api.getProduits().then((data) => {
       setData(data);
-    })
+    });
   }, []);
 
   const addToCart = (item: Produit) => {
@@ -38,19 +38,31 @@ function Grid() {
       }, 2000);
     }
   };
+  const [searchValue, setSearchValue] = useState("");
+
+  function getsearch(e: any) {
+    e.preventDefault();
+    setSearchValue(searchValue);
+  }
+
+  let dataFiltered = data.filter((produit) => {
+    let { label }: { label: string } = produit;
+    const inputValue = searchValue.toLowerCase();
+
+    return label.toLowerCase().includes(inputValue);
+  });
 
   return (
     <div>
-      <div className="w-full flex justify-between p-10">
-        <div></div>
-        <form className="flex gap-4">
-          <label className="text-blue-950 font-bold">Trie par</label>
-          <select className="text-black w-28 px-2">
-            <option>Prix</option>
-            <option>Catégorie</option>
-          </select>
-        </form>
-      </div>
+      <form className="flex flex-col mb-4 w-[80%] mx-auto mt-10" onSubmit={getsearch}>
+        <input
+          id="inputText"
+          type="text"
+          className="p-2 rounded-lg w-full mb-2 border-blue-900 border-2"
+          placeholder="Rechercher"
+          onChange={(e) => setSearchValue(e.target.value)}
+        ></input>
+      </form>
 
       <div>
         {showAlert && (
@@ -61,7 +73,7 @@ function Grid() {
       </div>
 
       <div className="flex gap-4 m-10 flex-wrap justify-center">
-        {data.map((item: Produit) => (
+        {dataFiltered.map((item: Produit) => (
           <div
             key={item.id}
             className="flex flex-col items-center justify-center bg-white rounded-xl shadow-md w-1/4 py-10"
