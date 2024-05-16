@@ -8,7 +8,7 @@ export const getProduits = async () => {
 };
 
 export const postPaiement = async (data: any) => {
-  const response = await fetch(API_URL + "/commande/new", {
+  const response = await fetch(API_URL + "/create-checkout-session", {
     method: "POST",
     headers: {
       "Accept": "*/*",

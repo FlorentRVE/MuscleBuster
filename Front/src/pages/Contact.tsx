@@ -4,8 +4,32 @@ import Title from "../components/Title";
 import { GiPositionMarker } from "react-icons/gi";
 import { CiMail } from "react-icons/ci";
 import { BsTelephone } from "react-icons/bs";
+import { useRef } from "react";
+import emailjs from "@emailjs/browser";
 
 function Contact() {
+
+  const form = useRef<HTMLFormElement | null>(null);
+
+  const sendEmail = (e: any) => {
+    e.preventDefault();
+
+    if (form.current) {
+      emailjs
+        .sendForm("service_7akwelr", "template_zfm0whe", form.current, {
+          publicKey: "KALFQqBpI4v0iJJzk",
+        })
+        .then(
+          () => {
+            console.log("SUCCESS!");
+          },
+          (error) => {
+            console.log("FAILED...", error.text);
+          }
+        );
+    }
+  };
+
   return (
     <div className="flex flex-col">
       <Navbar />
@@ -33,23 +57,53 @@ function Contact() {
 
           <div className="p-10 bg-red-300 w-[70%]">
             <p className="text-xl font-bold mb-5">Envoyez nous un mail</p>
-            <form className="flex flex-col gap-3">
-              <input type="text" placeholder="Nom" className="w-full" />
+            <form
+              className="flex flex-col gap-3"
+              ref={form}
+              onSubmit={sendEmail}
+            >
+              <input
+                type="text"
+                placeholder="Nom"
+                className="w-full"
+                name="nom"
+                id="nom"
+              />
 
               <div className="flex gap-3">
-                <input type="text" placeholder="Email" className="w-1/2" />
-                <input type="text" placeholder="Sujet" className="w-1/2" />
+                <input
+                  type="text"
+                  placeholder="Email"
+                  className="w-1/2"
+                  name="mail"
+                  id="mail"
+                />
+                <input
+                  type="text"
+                  placeholder="Sujet"
+                  className="w-1/2"
+                  name="sujet"
+                  id="sujet"
+                />
               </div>
 
-              <textarea className="w-full" placeholder="Message"></textarea>
+              <textarea
+                className="w-full"
+                placeholder="Message"
+                name="message"
+                id="message"
+              ></textarea>
 
-              <button className="bg-orange-400 text-white font-bold p-2 rounded-2xl w-20 self-end">
+              <button
+                type="submit"
+                className="bg-orange-400 text-white font-bold p-2 rounded-2xl w-20 self-end"
+              >
                 Envoyer
               </button>
             </form>
           </div>
         </div>
-        <img src="images/contact.png" alt="logo" className="w-72 mt-40"/>
+        <img src="images/contact.png" alt="logo" className="w-72 mt-40" />
       </div>
       <Footer />
     </div>

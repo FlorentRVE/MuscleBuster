@@ -4,11 +4,11 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Title from "../components/Title";
 import { MdDeleteForever } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
 import Produit from "../models/produit";
+// import * as api from "../utils/api";
+import { Link } from "react-router-dom";
 
 function Panier() {
-  const navigate = useNavigate();
 
   const { Produit, setProduit } = useContext(ProduitContext);
   const { Total, setTotal } = useContext(TotalContext);
@@ -32,6 +32,13 @@ function Panier() {
     );
   };
 
+  // const sendPaiement = () => {
+  //   let data = {
+  //     total: Total,
+  //   };
+  //   api.postPaiement(data);
+  // };
+
   return (
     <div className="flex flex-col">
       <Navbar />
@@ -39,7 +46,6 @@ function Panier() {
       <Title title="Panier" />
 
       <div className="flex flex-col justify-center mt-20 w-[80%] mx-auto">
-
         <div className="flex items-center justify-evenly bg-orange-400 p-2 font-bold">
           <p></p>
           <p>Produit</p>
@@ -84,16 +90,14 @@ function Panier() {
           <div></div>
 
           <div className="flex gap-4 py-4 my-10">
-            <button className="bg-gray-200 rounded-lg px-2 py-1">
-              Annuler le panier
-            </button>
-
-            <button
-              className="bg-orange-400 text-white font-bold rounded-lg px-2 py-1"
-              onClick={() => navigate("/paiement")}
-            >
-              PAYER
-            </button>
+            <Link to="https://127.0.0.1:8000/create-checkout-session">
+              <button
+                className="bg-orange-400 text-white font-bold rounded-lg px-2 py-1"
+                // onClick={() => sendPaiement()}
+              >
+                PAYER
+              </button>
+            </Link>
           </div>
         </div>
       </div>

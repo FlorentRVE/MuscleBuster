@@ -3,7 +3,9 @@
 namespace App\Document;
 
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\DateTimeType;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use Doctrine\ODM\MongoDB\Types\DateImmutableType;
 use MongoDB\Collection as MongoDBCollection;
 
 #[MongoDB\Document]
@@ -13,58 +15,20 @@ class Commande
     private string $id;
 
     #[MongoDB\Field(type: 'string')]
-    private string $nom;
-
-    #[MongoDB\Field(type: 'string')]
     private string $adresse;
 
     #[MongoDB\Field(type: 'string')]
     private string $mail;
 
-    #[MongoDB\Field(type: 'string')]
-    private string $nomCarte;
-
-    #[MongoDB\Field(type: 'string')]
-    private string $numeroCarte;
-
-    #[MongoDB\Field(type: 'string')]
-    private string $moisExpiration;
-
-    #[MongoDB\Field(type: 'string')]
-    private string $anneeExpiration;
-
-    #[MongoDB\Field(type: 'string')]
-    private string $cvv;
-
-    // #[MongoDB\Field(type: 'collection')]
-    private $commandes;
-
     #[MongoDB\Field(type: 'float')]
     private float $total;
+
+    #[MongoDB\Field(type: 'string')]
+    private string $date;
 
     public function getId()
     {
         return $this->id;
-    }
-
-    public function getNom(): string
-    {
-        return $this->nom;
-    }
-
-    public function setNom(string $nom)
-    {
-        $this->nom = $nom;
-    }
-
-    public function getAdresse(): string
-    {
-        return $this->adresse;
-    }
-
-    public function setAdresse(string $adresse)
-    {
-        $this->adresse = $adresse;
     }
 
     public function getMail(): string
@@ -75,67 +39,27 @@ class Commande
     public function setMail(string $mail)
     {
         $this->mail = $mail;
+    } 
+
+    public function getAdresse(): string
+    {
+        return $this->adresse;
     }
 
-    public function getNomCarte(): string
+    public function setAdresse(string $adresse)
     {
-        return $this->nomCarte;
+        $this->adresse = $adresse;
+    } 
+
+    public function getDate(): string
+    {
+        return $this->date;
     }
 
-    public function setNomCarte(string $nomCarte)
+    public function setDate(string $date)
     {
-        $this->nomCarte = $nomCarte;
-    }
-
-    public function getNumeroCarte(): string
-    {
-        return $this->numeroCarte;
-    }
-
-    public function setNumeroCarte(string $numeroCarte)
-    {
-        $this->numeroCarte = $numeroCarte;
-    }
-
-    public function getMoisExpiration(): string
-    {
-        return $this->moisExpiration;
-    }
-
-    public function setMoisExpiration(string $moisExpiration)
-    {
-        $this->moisExpiration = $moisExpiration;
-    }
-
-    public function getAnneeExpiration(): string
-    {
-        return $this->anneeExpiration;
-    }
-
-    public function setAnneeExpiration(string $anneeExpiration)
-    {
-        $this->anneeExpiration = $anneeExpiration;
-    }
-
-    public function getCvv(): string
-    {
-        return $this->cvv;
-    }
-
-    public function setCvv(string $cvv)
-    {
-        $this->cvv = $cvv;
-    }
-
-    public function getCommandes()
-    {
-        return $this->commandes;
-    }
-
-    public function setCommandes( $commandes)
-    {
-        $this->commandes = $commandes;
-    }
+        $this->date = $date;
+    } 
 
     public function getTotal(): float
     {
